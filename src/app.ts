@@ -1,31 +1,57 @@
-import cors from 'cors';
+import fastify from 'fastify';
+import cors from '@fastify/cors';
+import cookie from '@fastify/cookie';
+import session from '@fastify/session';
+import csrf from '@fastify/csrf-protection';
+import helmet from '@fastify/helmet';
+import swagger from '@fastify/swagger';
+import swaggerUi from '@fastify/swagger-ui';
 import dotenv from 'dotenv';
-import express from 'express';
-import helmet from 'helmet';
-import morgan from 'morgan';
 
 dotenv.config();
 
-const PORT = process.env.PORT || 3000;
+const PORT = Number(process.env.PORT || 3000);
+const SECRET = process.env.SECRET || 'secretsecretsecretsecretsecretsecretsecretsecretsecretsecret';
 
-const app = express();
+const app = fastify({ logger: true });
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(morgan('dev'));
-app.use(helmet());
-app.use(cors());
-
-app.get('/', async (req, res) => {
-    // simulate a slow response
-    const pause = new Promise<null>((resolve) => {
-        setTimeout(() => resolve(null), 2000);
-    });
-    await pause;
-
-    res.send('Hello World!');
+await app.register(helmet, {});
+await app.register(cors, {
+    origin: '*',
 });
+await app.register(cookie, { secret: SECRET });
+await app.register(session, { secret: SECRET });
+await app.register(csrf, { cookieOpts: { signed: true }, sessionPlugin: '@fastify/session' });
 
-app.listen(PORT, () => {
-    console.log(`Express Typescript starter listening on port ${PORT}...`);
-});
+await app.register(swagger);
+await app.register(swaggerUi, { routePrefix: '/docs' });
+
+// generate a token
+// app.get('/csrf', async (req, reply) => {
+//     const token = reply.generateCsrf();
+//     return { token };
+// });
+
+app.get(
+    '/ping',
+    {
+        // onRequest: app.csrfProtection
+    },
+    (req, res) => {
+        res.send('pong');
+    }
+);
+
+// Run the server!
+const start = async () => {
+    try {
+        await app.listen({ port: PORT });
+    } catch (err) {
+        app.log.error(err);
+        process.exit(1);
+    }
+};
+await start();
+
+await app.ready();
+app.swagger({ yaml: true });
