@@ -1,25 +1,25 @@
 {
-    "name": "express-ts-starter",
+    "name": "fastify-ts-starter",
     "version": "1.1.0",
-    "description": "express app starter in typescript",
+    "description": "fastify app starter in typescript",
     "main": "app.ts",
     "type": "module",
     "scripts": {
         "tsc": "tsc",
         "build": "tsc",
-        "dev": "nodemon ./src/app.ts",
+        "dev": "tsx watch ./src/app.ts",
         "start": "npm run build && node dist/app.js",
         "lint": "eslint . --ext .ts"
     },
     "keywords": [
         "node",
-        "express",
+        "fastify",
         "typescript",
         "starter",
         "eslint"
     ],
     "repository": {
-        "git": "https://github.com/mikecabana/express-ts-starter.git"
+        "git": "https://github.com/mikecabana/fastify-ts-starter.git"
     },
     "author": "Michael Cabana <mikeycabana@gmail.com>",
     "contributors": [
@@ -31,24 +31,26 @@
     ],
     "license": "MIT",
     "devDependencies": {
-        "@types/node": "^18.11.9",
-        "@typescript-eslint/eslint-plugin": "^5.45.0",
-        "@typescript-eslint/parser": "^5.45.0",
-        "eslint": "^8.28.0",
-        "nodemon": "^2.0.20",
-        "ts-node": "^10.9.1",
-        "ts-node-dev": "^2.0.0",
-        "typescript": "^4.9.3"
+        "@types/jsonwebtoken": "^9.0.6",
+        "@types/node": "^20.12.12",
+        "@types/ws": "^8.5.10",
+        "@typescript-eslint/eslint-plugin": "^7.10.0",
+        "@typescript-eslint/parser": "^7.10.0",
+        "eslint": "^8.57.0",
+        "tsx": "^4.11.0",
+        "typescript": "^5.4.5"
     },
     "dependencies": {
-        "@fastify/cookie": "^8.3.0",
-        "@fastify/cors": "^8.2.1",
-        "@fastify/csrf-protection": "^6.3.0",
-        "@fastify/helmet": "^10.1.0",
-        "@fastify/session": "^10.2.1",
-        "@fastify/swagger": "^8.3.1",
-        "@fastify/swagger-ui": "^1.8.0",
-        "dotenv": "^16.0.3",
-        "fastify": "^4.15.0"
+        "@fastify/cookie": "^9.3.1",
+        "@fastify/cors": "^9.0.1",
+        "@fastify/csrf-protection": "^6.4.1",
+        "@fastify/helmet": "^11.1.1",
+        "@fastify/session": "^10.9.0",
+        "@fastify/swagger": "^8.14.0",
+        "@fastify/swagger-ui": "^3.0.0",
+        "@fastify/websocket": "^10.0.1",
+        "dotenv": "^16.4.5",
+        "fastify": "^4.27.0",
+        "jsonwebtoken": "^9.0.2"
     }
 }
