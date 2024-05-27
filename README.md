@@ -1,23 +1,23 @@
-# Express Typescript Starter Project
+# Fastify Typescript Starter
 
-A starter node app using express and typescript! A super simple base to get off the ground quickly. It's unopiniated, has no structure(ish) and no templating.
+🚀 A super simple and (mostly) un-opinionated starter app using Fastify and Typescript!
 
 ## How to use?
 
 ### Prerequisites 
 
-make sure you have `node` and `npm` installed
+make sure you have at least `node v20.9.0(lts)` and `npm` installed
 
 ### Commands
 
 #### Install
 
-If it's the first time trying to run this starter project, install all the dependancies 
+If it's the first time trying to run this starter project, install all the dependencies 
 ~~~terminal
 npm install
 ~~~
 
-#### Start developemnt server
+#### Start development server
 
 Start the `development` server by running the following command in a terminal from the root folder of the project 
 ~~~terminal
@@ -41,6 +41,6 @@ npm start
 ## How to use with Docker?
 
 ~~~terminal
-docker build -t ts-express-app .
-docker run -it --rm -p 3000:3000 --name ts-express-app ts-express-app
+docker build -t fastify-ts-app .
+docker run -it --rm -p 3000:3000 --name fastify-ts-app fastify-ts-app
 ~~~
